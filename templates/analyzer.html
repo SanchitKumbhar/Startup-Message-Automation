@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-5">
+  <form action="/search_vis" method="post">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search..." aria-label="Search"
+        aria-describedby="button-addon2" name="query">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+      </div>
+    </div>
+  </form>
+  <div class="table-responsive">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Amount</th>
+          <th>Dates</th>
+          <th>First Message Date</th>
+          <th>Second Message Date</th>
+          <th>Payment Period</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.Name }}</td>
+          <td>{{ i.Phone_Number }}</td>
+          <td>{{ i.Amount }}</td>
+          <td>{{ i.Dates }}</td>
+          <td>{{ i.First_Message_Date }}</td>
+          <td>{{ i.Second_Message_Date }}</td>
+          <td>{{ i.Payment_Period }}</td>
+        </tr>
+
+        {% endfor %}
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock body %}
